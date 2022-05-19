@@ -3,12 +3,7 @@ const mongoose = require('mongoose');
 
 
 module.exports = function() {
-    mongoose.connect("mongodb://localhost/vidly")
-            .then(() => console.log('Connected to db: vidly')) 
-            .catch(err => logger.log({
-                level: 'error',
-                message: err.message,
-                metadata: err.stack
-                })
-            );
+    mongoose.connect(process.env.DATABASE_URL)
+            .then(() => console.log('Connected to database')) 
+            .catch(err => console.log(err.message));
 }
