@@ -11,8 +11,8 @@ app.set('layout', 'layouts/layout');
 app.use(expressLayouts);
 app.use(express.static('public'));
 
-require('./startUp/routes')(app);
-require('./startUp/db')();
+require('./vidly/startUp/routes')(app);
+require('./vidly/startUp/db')();
 
 
 // Listener
