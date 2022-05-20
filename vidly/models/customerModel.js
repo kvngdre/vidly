@@ -22,7 +22,7 @@ const customerSchema = new mongoose.Schema({
         required: true,
         trim: true
     }
-});
+}, {timestamps: true});
 
 // Customer Model
 const Customer = mongoose.model('Customer', customerSchema);

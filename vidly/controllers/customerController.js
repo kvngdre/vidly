@@ -7,7 +7,7 @@ const customer = {
         let queryParams = {};
         if(name && name !== '') queryParams.name = new RegExp(name, 'i');
         
-        return await Customer.find(queryParams).sort('name') 
+        return await Customer.find(queryParams).sort('_id') 
     },
 
     get: async function(customerID) { return await Customer.findById(customerID); },
