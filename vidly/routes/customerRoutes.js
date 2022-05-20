@@ -6,8 +6,7 @@ const customerViewController = require('../controllers/customerController');
 
 router.get('/', async (req, res) => {
     const customers = await customerViewController.getAll(req.query.name);
-    console.log(customers)
-
+    
     if(customers.length === 0) return res.render('customers/index', { customers: customers, queryParams: req.query, errorMessage: 'No customers.' })
 
     return res.render('customers/index', { customers: customers , queryParams: req.query });
@@ -25,7 +24,6 @@ router.get('/new', async (req, res) => {
 
 router.post('/', async (req, res) => {
     const { error } = customerValidator(req.body);
-    console.log(req.body)
     if(error) return res.render('customers/new', { customer: req.body, errorMessage: error.details[0].message, newCustomer: undefined });
 
     const customer = await customerViewController.create(req.body);
