@@ -5,10 +5,10 @@ const customerViewController = require('../controllers/customerController');
 
 
 router.get('/', async (req, res) => {
-    console.log('-----',req.query.name)
     const customers = await customerViewController.getAll(req.query.name);
+    console.log(customers)
 
-    if(customers.length === 0) return res.render('customers.index', {errorMessage})(404).send('No customers.');
+    if(customers.length === 0) return res.render('customers/index', { customers: customers, queryParams: req.query, errorMessage: 'No customers.' })
 
     return res.render('customers/index', { customers: customers , queryParams: req.query });
 });

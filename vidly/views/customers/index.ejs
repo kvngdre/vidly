@@ -5,6 +5,8 @@
     <button type="submit">Search</button>
 </form>
 <br>
-<% customers.forEach(customer => { %>
-    <div>Name: <%= customer.name %> | isGold: <%= customer.isGold %></div>
-<% }) %>
+<% if(customers?.length !== 0) { %>
+    <% customers.forEach(customer => { %>
+        <div>Name: <%= customer.name %> | isGold: <%= customer.isGold %></div>
+    <% }) %>
+<% } %>
