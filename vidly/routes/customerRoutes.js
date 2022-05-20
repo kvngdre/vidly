@@ -20,17 +20,18 @@ router.get('/new', async (req, res) => {
 
     // res.status(200).send(customer);
 
-    res.render('customers/new', { customer: {} })
+    res.render('customers/new', { customer: {}, newCustomer: undefined })
 });
 
 router.post('/', async (req, res) => {
     const { error } = customerValidator(req.body);
-    if(error) return res.render('customers/new', { customer: req.body, errorMessage: error.details[0].message });
+    console.log(req.body)
+    if(error) return res.render('customers/new', { customer: req.body, errorMessage: error.details[0].message, newCustomer: undefined });
 
     const customer = await customerViewController.create(req.body);
-    if(customer instanceof Error) return res.render('customers/new', { customer: req.body, errorMessage: customer.message });
+    if(customer instanceof Error) return res.render('customers/new', { customer: req.body, errorMessage: customer.message, newCustomer: undefined });
 
-    res.render('customers/new', {customer});
+    res.render('customers/new', {newCustomer: customer, customer: req.body});
 });
 
 router.put('/:id', async (req, res) => {

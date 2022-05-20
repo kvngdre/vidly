@@ -1,7 +1,17 @@
 <h2>New Customer</h2>
 <form action="/api/customers", method="POST">
     <%- include('_form_fields.ejs') %>
-    
-    <a href="/api/customers">Cancel</a>
+
+    <a href="/api/customers">Cancel </a>
     <button type="submit">Create</button>
 </form>
+<br>
+<% if(newCustomer !== undefined ) { %>
+    <h3>Customer created successfully</h3>
+    <div>Object id== <%= newCustomer._id %></div>
+    <div>Name== <%= newCustomer.name %></div>
+    <div>Is a gold customer== <%= newCustomer.isGold %></div>
+    <div>Phone number== <%= newCustomer.phone %></div>
+    <br>
+    <a href="/api/customers/new">Add Another</a>
+<% } %>
