@@ -3,7 +3,12 @@ const Customer = require('../models/customerModel');
 
 const customer = {
 
-    getAll: async function() { return await Customer.find().sort('name').select('name') },
+    getAll: async function(name) { 
+        let queryParams = {};
+        if(name && name !== '') queryParams.name = new RegExp(name, 'i');
+        
+        return await Customer.find(queryParams).sort('name') 
+    },
 
     get: async function(customerID) { return await Customer.findById(customerID); },
 

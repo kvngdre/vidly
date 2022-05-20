@@ -1,0 +1,10 @@
+<h2>Search Customers</h2>
+<form action="/api/customers/" method="GET">
+    <label>Name</label>
+    <input type="text" name="name" value="<%- queryParams.name %>">
+    <button type="submit">Search</button>
+</form>
+<br>
+<% customers.forEach(customer => { %>
+    <div>Name: <%= customer.name %> | isGold: <%= customer.isGold %></div>
+<% }) %>
